@@ -26,27 +26,32 @@ const text = [
 // lavoro su aside e creo le anteprime dall'arrey uno sotto l'altra
 
 const aside = document.querySelector(".aside");
+const containerImg = document.querySelector(".container-image")
 
 let currentIndex = 0;
 
 //ciclo for per assegnare le immagini all'aside
 
-for(let i=0; i<items.length; i++){
-     const anteprimaCorrente = items[i];
+for (let i = 0; i < items.length; i++) {
+    const anteprimaCorrente = items[i];
+    const immagineCorrente = items[i];
 
-     
+
 
     //una variabile a cui assegnare il primo indice e la classe per mostrare l'anteprima
 
-     let attivaAnteprima = " ";
+    let attivaAnteprima = " ";
+    let attivaImmagine = " ";
 
-     if (i===currentIndex){ attivaAnteprima ="attiva"}
+    if (i === currentIndex) { attivaAnteprima = "attiva" }
+    if (i === currentIndex) { attivaImmagine = "attiva" }
 
-//crep gli elementi Anteprima e l'inserirsco in HTML
+    //crep gli elementi Anteprima e l'inserirsco in HTML
 
-const tagAnteprima =` <div class="anteprima ${attivaAnteprima}"><img src="${anteprimaCorrente}" alt="img ${i}"></div>`;
-
-aside.innerHTML +=tagAnteprima;
+    const tagAnteprima = ` <div class="anteprima ${attivaAnteprima}"><img src="${anteprimaCorrente}" alt="img ${i}"></div>`;
+    const tagImmagine = ` <img class="${attivaImmagine}" src="${immagineCorrente}" alt="img ${i}">`;
+    aside.innerHTML += tagAnteprima;
+    containerImg.innerHTML += tagImmagine;
 
 }
 
@@ -56,15 +61,18 @@ aside.innerHTML +=tagAnteprima;
 //lavoro sulle freccie 
 
 
-const frecciaSu =document.querySelector(".fa-angle-up");
-const frecciaGiu =document.querySelector(".fa-angle-down");
+const frecciaSu = document.querySelector(".fa-angle-up");
+const frecciaGiu = document.querySelector(".fa-angle-down");
 
 
-frecciaSu.addEventListener("click", function(){
+frecciaSu.addEventListener("click", function () {
 
-    const attivaAnteprima=aside.querySelector(".attiva");
+    const attivaAnteprima = aside.querySelector(".attiva");
+
+    const attivaImmagine = containerImg.querySelector(".attiva");
 
     attivaAnteprima.classList.remove("attiva");
+    attivaImmagine.classList.remove("attiva");
 
     currentIndex--;
 
@@ -72,44 +80,62 @@ frecciaSu.addEventListener("click", function(){
 
     if (currentIndex < 0) {
         currentIndex = items.length - 1;
-      }
-
-      console.log(currentIndex);
-
-      const imgAnteprima = aside.querySelectorAll(".anteprima");
-
-      console.log(imgAnteprima);
-
-      const newAnteprima = imgAnteprima[currentIndex];
-
-      console.log(newAnteprima)
-
-      newAnteprima.classList.add("attiva");
-
-});
-
-frecciaGiu.addEventListener("click", function(){
-
-    const attivaAnteprima=aside.querySelector(".attiva");
-
-    attivaAnteprima.classList.remove("attiva");
-
-    currentIndex++;
+    }
 
     console.log(currentIndex);
 
-    if (currentIndex > items.length -1) {
-        currentIndex = 0;
-      }
+    const imgAnteprima = aside.querySelectorAll(".anteprima");
 
-      console.log(currentIndex);
+    const imgImmagine = containerImg.querySelectorAll("img");
 
-      const imgAnteprima = aside.querySelectorAll(".anteprima");
+    console.log(imgAnteprima);
+    console.log(imgImmagine);
 
-      const newAnteprima = imgAnteprima[currentIndex];
+    const newAnteprima = imgAnteprima[currentIndex];
 
-      newAnteprima.classList.add("attiva");
+    const newImmagine = imgImmagine[currentIndex];
+
+    console.log(newAnteprima)
+
+    newAnteprima.classList.add("attiva");
+
+    newImmagine.classList.add("attiva");
 
 });
 
+frecciaGiu.addEventListener("click", function () {
+
+    const attivaAnteprima = aside.querySelector(".attiva");
+
+    const attivaImmagine = containerImg.querySelector(".attiva");
+
+    attivaAnteprima.classList.remove("attiva");
+    attivaImmagine.classList.remove("attiva");
+
+    currentIndex++;
+
+    
+
+    if (currentIndex > items.length - 1) {
+        currentIndex = 0;
+    }
+
+   
+
+    const imgAnteprima = aside.querySelectorAll(".anteprima");
+
+    const imgImmagine = containerImg.querySelectorAll("img");
+
+
+    const newAnteprima = imgAnteprima[currentIndex];
+
+    const newImmagine = imgImmagine[currentIndex];
+
+    
+
+    newAnteprima.classList.add("attiva");
+
+    newImmagine.classList.add("attiva");
+
+});
 
