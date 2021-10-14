@@ -26,7 +26,9 @@ const text = [
 // lavoro su aside e creo le anteprime dall'arrey uno sotto l'altra
 
 const aside = document.querySelector(".aside");
-const containerImg = document.querySelector(".container-image")
+const containerImg = document.querySelector(".container-image");
+
+
 
 let currentIndex = 0;
 
@@ -36,22 +38,43 @@ for (let i = 0; i < items.length; i++) {
     const anteprimaCorrente = items[i];
     const immagineCorrente = items[i];
 
+    const titoloCorrente = title[i];
 
+    const testoCorrente = text[i];
+
+    console.log(titoloCorrente);
 
     //una variabile a cui assegnare il primo indice e la classe per mostrare l'anteprima
 
     let attivaAnteprima = " ";
     let attivaImmagine = " ";
+    let attivaBox = " ";
 
     if (i === currentIndex) { attivaAnteprima = "attiva" }
     if (i === currentIndex) { attivaImmagine = "attiva" }
+    if (i === currentIndex) { attivaBox = "attiva" }
 
     //crep gli elementi Anteprima e l'inserirsco in HTML
 
     const tagAnteprima = ` <div class="anteprima ${attivaAnteprima}"><img src="${anteprimaCorrente}" alt="img ${i}"></div>`;
     const tagImmagine = ` <img class="${attivaImmagine}" src="${immagineCorrente}" alt="img ${i}">`;
+
+    const tagBox = ` <div class="box-info ${attivaBox}">
+                            <div class="title">
+                                   ${titoloCorrente}
+        
+                             </div>
+    
+                            <div class="text">
+                                   ${testoCorrente}
+                            </div>
+                        </div>
+                       `
+
     aside.innerHTML += tagAnteprima;
     containerImg.innerHTML += tagImmagine;
+    containerImg.innerHTML += tagBox;
+
 
 }
 
@@ -71,8 +94,11 @@ frecciaSu.addEventListener("click", function () {
 
     const attivaImmagine = containerImg.querySelector(".attiva");
 
+    const attivaBox = containerImg.querySelector(".container-image>.box-info.attiva");
+
     attivaAnteprima.classList.remove("attiva");
     attivaImmagine.classList.remove("attiva");
+    attivaBox.classList.remove("attiva");
 
     currentIndex--;
 
@@ -88,12 +114,17 @@ frecciaSu.addEventListener("click", function () {
 
     const imgImmagine = containerImg.querySelectorAll("img");
 
+    const Box = containerImg.querySelectorAll(".box-info")
+
     console.log(imgAnteprima);
     console.log(imgImmagine);
+    console.log(Box);
 
     const newAnteprima = imgAnteprima[currentIndex];
 
     const newImmagine = imgImmagine[currentIndex];
+
+    const newBox = Box[currentIndex];
 
     console.log(newAnteprima)
 
@@ -101,35 +132,44 @@ frecciaSu.addEventListener("click", function () {
 
     newImmagine.classList.add("attiva");
 
+    newBox.classList.add("attiva");
+
 });
 
 frecciaGiu.addEventListener("click", function () {
 
     const attivaAnteprima = aside.querySelector(".attiva");
 
-    const attivaImmagine = containerImg.querySelector(".attiva");
+    const attivaImmagine = containerImg.querySelector(".container-image> img.attiva");
+
+    const attivaBox = containerImg.querySelector(".container-image>.box-info.attiva");
 
     attivaAnteprima.classList.remove("attiva");
     attivaImmagine.classList.remove("attiva");
+    attivaBox.classList.remove("attiva");
 
     currentIndex++;
 
-    
+
 
     if (currentIndex > items.length - 1) {
         currentIndex = 0;
     }
 
-   
+    
 
     const imgAnteprima = aside.querySelectorAll(".anteprima");
 
     const imgImmagine = containerImg.querySelectorAll("img");
 
+    const Box = containerImg.querySelectorAll(".box-info")
 
+    
     const newAnteprima = imgAnteprima[currentIndex];
 
     const newImmagine = imgImmagine[currentIndex];
+
+    const newBox = Box[currentIndex];
 
     
 
@@ -137,5 +177,10 @@ frecciaGiu.addEventListener("click", function () {
 
     newImmagine.classList.add("attiva");
 
+    newBox.classList.add("attiva");
+
 });
+
+
+
 

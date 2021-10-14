@@ -72,8 +72,11 @@
            bottom: 15px;
            right: 15px;
            text-align: end;
+           opacity: 0;
            z-index: 99;
            }
+
+.container-image>.box-info.attiva{opacity: 1;}
 
 .box-info>.title{ font-size: 30px;
                  font-weight: bold;}
