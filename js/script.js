@@ -57,7 +57,7 @@ aside.innerHTML +=tagAnteprima;
 
 
 const frecciaSu =document.querySelector(".fa-angle-up");
-const frecciaGiu =document.querySelector(".freccia-giu");
+const frecciaGiu =document.querySelector(".fa-angle-down");
 
 
 frecciaSu.addEventListener("click", function(){
@@ -83,6 +83,30 @@ frecciaSu.addEventListener("click", function(){
       const newAnteprima = imgAnteprima[currentIndex];
 
       console.log(newAnteprima)
+
+      newAnteprima.classList.add("attiva");
+
+});
+
+frecciaGiu.addEventListener("click", function(){
+
+    const attivaAnteprima=aside.querySelector(".attiva");
+
+    attivaAnteprima.classList.remove("attiva");
+
+    currentIndex++;
+
+    console.log(currentIndex);
+
+    if (currentIndex > items.length -1) {
+        currentIndex = 0;
+      }
+
+      console.log(currentIndex);
+
+      const imgAnteprima = aside.querySelectorAll(".anteprima");
+
+      const newAnteprima = imgAnteprima[currentIndex];
 
       newAnteprima.classList.add("attiva");
 
